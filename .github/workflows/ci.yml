@@ -13,6 +13,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2 
     - name: Build TealiumCore iOS
-      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild -project “tealium-swift.xcodeproj” -scheme TealiumCore -destination "platform=iOS Simulator,name=iPhone 11 Pro Max" clean build | xcpretty
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild -project tealium-swift.xcodeproj -scheme TealiumCore -destination "platform=iOS Simulator,name=iPhone 11 Pro Max" clean build | xcpretty
     - name: Test TealiumCore iOS
       run: xcodebuild -project tealium-swift.xcodeproj -scheme TealiumCoreTests-iOS -destination "platform=iOS Simulator,name=iPhone 11 Pro Max" test | xcpretty

@@ -1,5 +1,5 @@
 included:
-  - ../tealium
+  - ./tealium
 excluded:
   - Tests/SwiftLintFrameworkTests/Resources
   - ../tealium/core/DiskStorage/Disk/

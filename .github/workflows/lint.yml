@@ -21,9 +21,9 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: '2.7'
-      - name: install swiftlint
-        run: | 
-          brew install swiftlint
-      - name: Lint TealiumCore 
-        run: find tealium/core -type f -name "*.swift" -exec swiftlint lint --config .swiftlint.yml
+      - name: install fastlane
+        run: |
+          brew install fastlane
+      - name: Linting 
+        run: fastlane run swiftlint config_file:".swiftlint.yml"
   

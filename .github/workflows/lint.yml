@@ -1,0 +1,44 @@
+name: Lint
+
+on:
+  push:
+    branches:
+    - feature/*
+    - ci-tests
+  pull_request:
+    branches:
+      - ci-tests
+
+jobs:
+  lint_iOS:
+    name: Lint iOS frameworks
+    runs-on: macos-latest
+    timeout-minutes: 60
+    env: 
+      DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
+      working-directory: ./tealium
+    strategy:
+      matrix:
+        destination: ["platform=iOS Simulator,OS=14.0,name=iPhone 11 Pro"]
+        scheme: 
+          - TealiumCore
+          - TealiumCollect
+          - TealiumLifecycle
+          - TealiumVisitorService
+          - TealiumLocation
+          - TealiumRemoteCommands
+          - TealiumTagManagement
+          - TealiumAttribution
+          - TealiumAutotracking
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: '2.7'
+      - name: install swiftlint
+        run: | 
+          brew install swiftlint
+      - name: Lint TealiumCore 
+        run: find ../core -type f -name "*.swift" -exec swiftlint lint --config ../../.swiftlint.yml {} \;
+        working-directory: ${{ env.working-directory }}
+  

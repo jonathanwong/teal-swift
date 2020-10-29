@@ -17,19 +17,6 @@ jobs:
     env: 
       DEVELOPER_DIR: /Applications/Xcode_12.app/Contents/Developer
       working-directory: ./tealium
-    strategy:
-      matrix:
-        destination: ["platform=iOS Simulator,OS=14.0,name=iPhone 11 Pro"]
-        scheme: 
-          - TealiumCore
-          - TealiumCollect
-          - TealiumLifecycle
-          - TealiumVisitorService
-          - TealiumLocation
-          - TealiumRemoteCommands
-          - TealiumTagManagement
-          - TealiumAttribution
-          - TealiumAutotracking
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-ruby@v1
